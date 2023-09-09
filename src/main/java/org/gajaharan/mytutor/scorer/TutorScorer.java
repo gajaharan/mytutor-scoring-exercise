@@ -1,25 +1,28 @@
 package org.gajaharan.mytutor.scorer;
 
 import org.gajaharan.mytutor.model.Question;
+import org.gajaharan.mytutor.questionnaire.Questionnaire;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class TutorScorer implements Scorer {
-    private List<Question> questions = new ArrayList<>();
+    final private List<Question> questions = new ArrayList<>();
+    final private List<Questionnaire> questionnaires;
+
+    public TutorScorer(List<Questionnaire> questionnaires) {
+        this.questionnaires = questionnaires;
+    }
 
     @Override
-    public boolean add(Question question) {
+    public boolean add(final Question question) {
         return questions.add(question);
     }
 
     @Override
     public int totalScore() {
-        return questions.stream()
-                .map(question -> question.questionsWithValues().values())
-                .flatMap(Collection::stream)
-                .mapToInt(Integer::parseInt)
-                .sum();
+        return questionnaires.stream()
+                .map(questionnaire -> questionnaire.sum(questions))
+                .reduce(0, Integer::sum);
     }
 }
