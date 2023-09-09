@@ -6,4 +6,6 @@ public interface Question {
     String title();
 
     Map<String, String> questionsWithValues();
+
+    QuestionType type();
 }

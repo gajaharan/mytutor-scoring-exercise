@@ -10,47 +10,47 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class SingleChoiceQuestionnaireTest {
-    private SingleChoiceQuestionnaire singleChoiceQuestionnaire = new SingleChoiceQuestionnaire();
+public class MultipleChoiceQuestionnaireTest {
+    private MultipleChoiceQuestionnaire multipleChoiceQuestionnaire = new MultipleChoiceQuestionnaire();
 
     @Test
     public void findTheTotalScoreWhenNoQuestionIsSubmitted() {
         int expectedScore = 0;
         List<Question> questions = Collections.emptyList();
-        int actualScore = singleChoiceQuestionnaire.sum(questions);
+        int actualScore = multipleChoiceQuestionnaire.sum(questions);
         Assertions.assertEquals(expectedScore, actualScore);
     }
 
     @Test
     public void findTheTotalScoreWhenOneQuestionIsSubmitted() {
-        int expectedScore = 2;
+        int expectedScore = 3;
         List<Question> questions = List.of(
                 new ScoreQuestion(
-                        "How much overall tutoring experience do you have?",
-                        Map.of("3 or more", "2"),
-                        QuestionType.SINGLE_CHOICE
+                        "What kind of tutoring experience do you have?",
+                        Map.of("Online tutoring", "1", "Home schooling", "1", "After school club", "1"),
+                        QuestionType.MULTIPLE_CHOICE
                 )
         );
-        int actualScore = singleChoiceQuestionnaire.sum(questions);
+        int actualScore = multipleChoiceQuestionnaire.sum(questions);
         Assertions.assertEquals(expectedScore, actualScore);
     }
 
     @Test
     public void findTheTotalScoreWhenTwoQuestionIsSubmitted() {
-        int expectedScore = 5;
+        int expectedScore = 8;
         List<Question> questions = List.of(
                 new ScoreQuestion(
-                        "How much overall tutoring experience do you have?",
-                        Map.of("3 or more", "2"),
-                        QuestionType.SINGLE_CHOICE
+                        "What kind of tutoring experience do you have?",
+                        Map.of("Online tutoring", "1", "Home schooling", "1", "After school club", "1"),
+                        QuestionType.MULTIPLE_CHOICE
                 ),
                 new ScoreQuestion(
-                        "What is your fluent Language",
-                        Map.of("English", "3"),
-                        QuestionType.SINGLE_CHOICE
+                        "What is your field of expertise?",
+                        Map.of("Information Technology and Computing", "2", "Mathematics", "3"),
+                        QuestionType.MULTIPLE_CHOICE
                 )
         );
-        int actualScore = singleChoiceQuestionnaire.sum(questions);
+        int actualScore = multipleChoiceQuestionnaire.sum(questions);
         Assertions.assertEquals(expectedScore, actualScore);
     }
 
@@ -59,12 +59,12 @@ public class SingleChoiceQuestionnaireTest {
         int expectedScore = 0;
         List<Question> questions = List.of(
                 new ScoreQuestion(
-                        "What kind of tutoring experience do you have?",
-                        Map.of("Online tutoring", "1","Home schooling", "1", "After school club", "1"),
-                        QuestionType.MULTIPLE_CHOICE
+                        "How much overall tutoring experience do you have?",
+                        Map.of("3 or more", "2"),
+                        QuestionType.SINGLE_CHOICE
                 )
         );
-        int actualScore = singleChoiceQuestionnaire.sum(questions);
+        int actualScore = multipleChoiceQuestionnaire.sum(questions);
         Assertions.assertEquals(expectedScore, actualScore);
     }
 }
