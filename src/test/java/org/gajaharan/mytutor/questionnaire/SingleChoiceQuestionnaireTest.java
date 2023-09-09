@@ -26,6 +26,7 @@ public class SingleChoiceQuestionnaireTest {
         int expectedScore = 2;
         List<Question> questions = List.of(
                 new ScoreQuestion(
+                        1,
                         "How much overall tutoring experience do you have?",
                         Map.of("3 or more", "2"),
                         QuestionType.SINGLE_CHOICE
@@ -40,11 +41,13 @@ public class SingleChoiceQuestionnaireTest {
         int expectedScore = 5;
         List<Question> questions = List.of(
                 new ScoreQuestion(
+                        1,
                         "How much overall tutoring experience do you have?",
                         Map.of("3 or more", "2"),
                         QuestionType.SINGLE_CHOICE
                 ),
                 new ScoreQuestion(
+                        1,
                         "What is your fluent Language",
                         Map.of("English", "3"),
                         QuestionType.SINGLE_CHOICE
@@ -59,6 +62,7 @@ public class SingleChoiceQuestionnaireTest {
         int expectedScore = 0;
         List<Question> questions = List.of(
                 new ScoreQuestion(
+                        1,
                         "What kind of tutoring experience do you have?",
                         Map.of("Online tutoring", "1","Home schooling", "1", "After school club", "1"),
                         QuestionType.MULTIPLE_CHOICE
