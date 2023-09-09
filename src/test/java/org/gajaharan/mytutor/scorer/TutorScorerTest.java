@@ -22,11 +22,26 @@ public class TutorScorerTest {
     }
 
     @Test
-    public void scorerProvidesTheTotalScoreZeroWhenContainingOneSingleChoiceQuestions() {
+    public void scorerProvidesTheTotalScoreWhenContainingOneSingleChoiceQuestions() {
         int expectedScore = 2;
         tutorScorer.add(new ScoreQuestion(
                 "How much overall tutoring experience do you have?",
                 Map.of("3 or more", "2")
+        ));
+        int actualScore = tutorScorer.totalScore();
+        Assertions.assertEquals(expectedScore, actualScore);
+    }
+
+    @Test
+    public void scorerProvidesTheTotalScoreWhenContainingTwoSingleChoiceQuestions() {
+        int expectedScore = 5;
+        tutorScorer.add(new ScoreQuestion(
+                "How much overall tutoring experience do you have?",
+                Map.of("3 or more", "2")
+        ));
+        tutorScorer.add(new ScoreQuestion(
+                "What is your fluent Language",
+                Map.of("English", "3")
         ));
         int actualScore = tutorScorer.totalScore();
         Assertions.assertEquals(expectedScore, actualScore);

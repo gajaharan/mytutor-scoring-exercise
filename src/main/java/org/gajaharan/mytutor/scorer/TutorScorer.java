@@ -20,6 +20,6 @@ public class TutorScorer implements Scorer {
                 .map(question -> question.questionsWithValues().values())
                 .flatMap(Collection::stream)
                 .mapToInt(Integer::parseInt)
-                .findFirst().orElse(0);
+                .sum();
     }
 }
