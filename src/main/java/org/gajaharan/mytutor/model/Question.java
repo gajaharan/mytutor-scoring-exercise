@@ -4,5 +4,6 @@ import java.util.Map;
 
 public interface Question {
     String title();
+
     Map<String, String> questionsWithValues();
 }

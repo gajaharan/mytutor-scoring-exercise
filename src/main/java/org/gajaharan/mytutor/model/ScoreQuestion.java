@@ -10,6 +10,7 @@ public class ScoreQuestion implements Question {
         this.title = title;
         this.questionsWithValues = questionsWithValues;
     }
+
     @Override
     public String title() {
         return title;
